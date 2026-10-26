@@ -84,29 +84,27 @@ footer a { margin-right: 14px; }
   </ol>
 
   <h2 id="puente">Puente LAN: descarga e instalación</h2>
-  <p>El puente es gratuito y funciona en Windows 10/11, Raspberry Pi OS, Debian o Ubuntu. Necesita <a href="https://nodejs.org">Node.js</a> 20 o superior (versión LTS).</p>
-  <p><a class="btn" href="descargas/led-wall-bridge.zip" download>Descargar puente v1.0.0 (.zip)</a></p>
-  <h3>Windows</h3>
+  <p>El puente es gratuito. Instálalo en una PC con Windows o en una Raspberry Pi que quede encendida en la red del procesador. No necesitas instalar nada más.</p>
+  <h3>Windows 10 y 11</h3>
+  <p><a class="btn" href="descargas/LED-Wall-Bridge-Setup.exe" download>Descargar instalador para Windows</a></p>
+  <p class="muted">Puente v1.0.0 · 64 bits · un solo archivo</p>
   <ol>
-    <li>Instala Node.js LTS y descomprime el .zip en <code>C:\</code> (se crea la carpeta <code>C:\led-wall-bridge</code>).</li>
-    <li>Abre <strong>PowerShell como administrador</strong> y ejecuta:</li>
+    <li>Abre <strong>LED-Wall-Bridge-Setup.exe</strong>. Si aparece «Windows protegió su PC», toca <strong>Más información › Ejecutar de todas formas</strong>.</li>
+    <li>Acepta el permiso de administrador.</li>
+    <li>Al terminar verás la <strong>dirección</strong> y el <strong>token</strong>: escríbelos en la app.</li>
   </ol>
-  <pre>cd C:\led-wall-bridge
-powershell -ExecutionPolicy Bypass -File bridge\install-windows.ps1</pre>
-  <p>Queda instalado como tarea que arranca con Windows, se reinicia si falla y abre el puerto 8787 en el firewall para redes privadas. Al terminar muestra la <strong>dirección</strong> y el <strong>token</strong> que debes copiar en la app. Si la red de la PC está marcada como Pública, cámbiala a Privada.</p>
-  <h3>Raspberry Pi o Linux</h3>
-  <pre>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
-sudo apt install -y nodejs unzip
-unzip led-wall-bridge.zip && cd led-wall-bridge
-sudo bash bridge/install-linux.sh</pre>
-  <p>Se instala como servicio <code>led-wall-bridge</code> (systemd). Registro en vivo: <code>journalctl -u led-wall-bridge -f</code>.</p>
+  <p>Arranca solo con Windows, aunque nadie inicie sesión. Para volver a ver la dirección y el token, abre otra vez el instalador. Para quitarlo: Configuración › Aplicaciones › LED Wall Pro · Puente LAN › Desinstalar.</p>
+  <h3>Raspberry Pi, Debian o Ubuntu</h3>
+  <p>Abre la terminal y pega:</p>
+  <pre>curl -fsSL https://kenlly1998.github.io/ledwall-pro/descargas/instalar.sh | sudo bash</pre>
+  <p>Instala Node.js si falta, deja el puente como servicio y al terminar muestra la <strong>dirección</strong> y el <strong>token</strong>. Vuelve a pegarlo para actualizar o para ver esos datos otra vez. Para quitarlo, cambia <code>sudo bash</code> por <code>sudo bash -s -- --uninstall</code>.</p>
   <h3>En la app</h3>
   <ol>
     <li>Control › Equipos › Puente LAN: escribe la dirección (por ejemplo <code>192.168.0.50:8787</code>) y el token.</li>
     <li>Toca <strong>Probar puente</strong> y luego <strong>Buscar procesadores</strong>.</li>
     <li>Agrega el procesador encontrado y, en Control › Horarios, crea tu programación de brillo.</li>
   </ol>
-  <p class="muted">Para practicar sin procesador instala con <code>-Demo</code> (Windows) o <code>--demo</code> (Linux). Para desinstalar: <code>-Uninstall</code> o <code>--uninstall</code>. No expongas el puerto 8787 a internet.</p>
+  <p class="muted">Para practicar sin procesador, agrega en la app un equipo con conexión Demo. No expongas el puerto 8787 a internet.</p>
 
   <h2>Prueba de campo</h2>
   <p>En Control › Estado › <strong>Prueba de campo guiada</strong>, la app envía cada comando a tu procesador y te pregunta si la pantalla respondió. Hazla sin público y con la pantalla a la vista. Al final puedes compartir el reporte: envíanoslo si algún comando falla y lo revisamos para tu modelo y firmware.</p>
